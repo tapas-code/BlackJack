@@ -39,7 +39,7 @@ function renderGame(){
     if(sum<21){
         messageEl.textContent = "Draw a card."
     }else if(sum===21){
-        messageEl.textContent = "Hoorah! It's a Blackjack."
+        messageEl.textContent = "Hoorah! It's a Blackjack. 🎉"
         isAlive=false
     }else{
         messageEl.textContent = "Try your luck next time."
