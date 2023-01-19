@@ -14,21 +14,36 @@ function randomCard(){
         return 10
     }else return card
 }
-function startGame(){
-    cards = [randomCard(), randomCard()]
-    sum = cards[0]+cards[1]
-    isAlive = true
-    cardEl.textContent = "Cards: " + cards
-    sumEl.textContent = "Sum: " + sum
-    renderGame()
+function newGame(){
+    if(isAlive==false){
+        cards = [randomCard(), randomCard()]
+        sum = cards[0]+cards[1]
+        isAlive = true
+        cardEl.textContent = "Cards: " + cards
+        sumEl.textContent = "Sum: " + sum
+        renderGame()
+    }
+    else if(sum>=21){
+        messageEl.textContent = "Want to play a round?"
+        cards.splice(0, cards.length);
+        sum=0
+        cardEl.textContent = "Cards: " 
+        sumEl.textContent = "Sum: " 
+        startGame()
+    }
+    else{
+        alert("Finish the current round.")
+    }
 }
 function renderGame(){
     if(sum<21){
         messageEl.textContent = "Draw a card."
     }else if(sum===21){
         messageEl.textContent = "Hoorah! It's a Blackjack."
+        isAlive=false
     }else{
         messageEl.textContent = "Try your luck next time."
+        isAlive=false
     }
 }
 function generateCard(){
@@ -48,21 +63,5 @@ function generateCard(){
     }
     else if(isAlive==false){
         alert("Click on START GAME.")
-    }
-}
-function newGame(){
-    if(sum>=21){
-        messageEl.textContent = "Want to play a round?"
-        cards.splice(0, cards.length);
-        sum=0
-        cardEl.textContent = "Cards: " 
-        sumEl.textContent = "Sum: " 
-        startGame()
-    }
-    else if(isAlive==false){
-        alert("Click on START GAME.")
-    }
-    else {
-        alert("Finish the current round.")
     }
 }
